@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Animal>
+
+<h2>Animals</h2>
+
+
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Species</th>
+        <th>Age</th>
+        <th>Description</th>
+        <th>Image</th>
+    </tr>
+
+    <tr>
+        @foreach(var animal in Model)
+        {
+            <td>@animal.Id</td>
+            <td>@animal.Name</td>
+            <td>@animal.Species</td>
+            <td>@animal.Age</td>
+            <td>@animal.Description</td>
+            <td><img id="indexImg" src="data:image/jpeg;base64,@Convert.ToBase64String(animal.Image)" /></td>
+        }
+    </tr>
+
+</table>

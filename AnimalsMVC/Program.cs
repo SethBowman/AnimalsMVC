@@ -1,7 +1,20 @@
+using AnimalsMVC;
+using MySql.Data.MySqlClient;
+using System.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<IDbConnection>((s) =>
+{
+    IDbConnection conn = new MySqlConnection(builder.Configuration.GetConnectionString("animals"));
+    conn.Open();
+    return conn;
+});
+
+builder.Services.AddTransient<IAnimalRepo, AnimalRepo>();
 
 var app = builder.Build();
 
